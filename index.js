@@ -28,7 +28,7 @@
 
 
 
-const path = require('path');
+// const path = require('path');
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -39,12 +39,12 @@ const bodyParser = require ('body-parser')
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(express.static(path.resolve(__dirname, '../build')))
+// app.use(express.static(path.resolve(__dirname, '../build')))
 app.use(cors());
 app.use(bodyParser.json());
 
 
-app.get("/api", (req,res) =>{
+app.get("/api/contact", (req,res) =>{
     res.json ({ message: "Hello from server!"})
 });
 
@@ -91,9 +91,9 @@ app.post("/api/contact", bodyParser.urlencoded({ extended: false}), (req, res) =
 });
 
 
-app.get('*', (req, res) =>{
-    res.sendFile(path.resolve(__dirname, '../buid', 'index.html'))
-})
+// app.get('*', (req, res) =>{
+//     res.sendFile(path.resolve(__dirname, '../buid', 'index.html'))
+// })
 
 
 app.listen(PORT, () =>{
