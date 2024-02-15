@@ -50,6 +50,9 @@ app.get("/api/contact", (req,res) =>{
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.EMAIL_ADRESS,
         pass: process.env.EMAIL_PASS
@@ -80,15 +83,22 @@ app.post("/api/contact", bodyParser.urlencoded({ extended: false}), (req, res) =
                <p>Message: ${message}</p>
         `
     }
+
     contactEmail.sendMail(mail, (error) =>{
         if (error) {
             res.json(error);
         } else {
             res.json({ code: 200, message :" message sent "})
         }
-    })
+    });
 
+    
 });
+
+
+
+
+// });
 
 
 // app.get('*', (req, res) =>{
