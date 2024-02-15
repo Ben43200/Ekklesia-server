@@ -50,6 +50,8 @@ app.get("/api/contact", (req,res) =>{
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL_ADRESS,
         pass: process.env.EMAIL_PASS
