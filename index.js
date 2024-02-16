@@ -59,17 +59,19 @@ app.post(
   "/api/contact",
   bodyParser.urlencoded({ extended: false }),
   (req, res) => {
-    const name = req.body.firstName + req.body.lastName;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
     const email = req.body.email;
     const message = req.body.message;
     const phone = req.body.phone;
     const mail = {
-      from: name,
+      from: lastName + firstName,
       to: process.env.EMAIL_CONTACT,
-      subject: "Contact Form Submission - Portfolio",
-      html: `<p>Name: ${name}</p>
+      subject: "Contact d'Ekklêsia-web",
+      html: `<p>Prénom: ${firstName}</p>
+             <p>Nom: ${lastName}</p>
                <p>Email: ${email}</p>
-               <p>Phone: ${phone}</p>
+               <p>Téléphone: ${phone}</p>
                <p>Message: ${message}</p>
         `,
     };
